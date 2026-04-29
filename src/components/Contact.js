@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/form.png";
 import TrackVisibility from "react-on-screen";
+import emailjs from 'emailjs-com';
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -26,6 +27,48 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
+
+    try {
+      // EmailJS configuration - Replace these with your actual EmailJS credentials
+      // 1. Go to https://www.emailjs.com/ and create an account
+      // 2. Add an email service (Gmail, Outlook, etc.)
+      // 3. Create an email template with variables: {{from_name}}, {{from_email}}, {{phone}}, {{message}}, {{to_email}}, {{reply_to}}
+      // 4. Replace the IDs below with your actual EmailJS credentials
+      const serviceId = 'your_service_id'; // Get this from EmailJS dashboard -> Email Services
+      const templateId = 'your_template_id'; // Get this from EmailJS dashboard -> Email Templates
+      const userId = 'your_user_id'; // Get this from EmailJS dashboard -> Account -> General
+
+      // Prepare email parameters
+      const templateParams = {
+        from_name: `${formDetails.firstName} ${formDetails.lastName}`,
+        from_email: formDetails.email,
+        phone: formDetails.phone,
+        message: formDetails.message,
+        to_email: '20235939@fue.edu.eg', // Your email address
+        reply_to: formDetails.email
+      };
+
+      // Send email using EmailJS
+      const result = await emailjs.send(serviceId, templateId, templateParams, userId);
+
+      if (result.status === 200) {
+        setStatus({
+          success: true,
+          message: "Message sent successfully! I'll get back to you soon."
+        });
+        setFormDetails(formInitialDetails); // Reset form
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Email send error:', error);
+      setStatus({
+        success: false,
+        message: "Failed to send message. Please try again or contact me directly."
+      });
+    } finally {
+      setButtonText("Send");
+    }
   };
 
   return (

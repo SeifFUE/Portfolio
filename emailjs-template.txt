@@ -1,0 +1,24 @@
+EmailJS Template for Contact Form
+=====================================
+
+Copy and paste this template into EmailJS when creating a new email template:
+
+Subject: New Contact Form Message from {{from_name}}
+
+Hi Seif,
+
+You have received a new message from your portfolio contact form:
+
+From: {{from_name}}
+Email: {{from_email}}
+Phone: {{phone}}
+
+Message:
+{{message}}
+
+---
+This email was sent from your portfolio website contact form.
+Reply to: {{reply_to}}
+
+Best regards,
+Portfolio Contact Form
