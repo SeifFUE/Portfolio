@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-website",
+  "name": "ortfolio-website",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,9 +17,9 @@
     "react-on-screen": "^2.1.1",
     "react-scripts": "5.0.1",
     "react-snowfall": "^2.4.0",
-    "homepage": "https://github.com/Mohannadx101/web-project",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "https://seiffue.github.io/Portfolio",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
